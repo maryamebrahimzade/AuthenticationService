@@ -1,0 +1,48 @@
+# app config
+server:
+  port: 8081
+# mysql config
+spring:
+  jackson:
+    time-zone: Asia/Tehran
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+  datasource:
+    url: jdbc:mysql://localhost:3306/auth
+    username: root
+    password:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+# redis config
+redis:
+  host: localhost
+  port: 6379
+  prefix: user
+# jwt config
+jwt:
+  token:
+    secret: 4A614E635266556A586E3272357538782F413F4428472B4B6250655367566B59
+    validity: 600
+    id:
+      validity: 3600
+# fibonacci config
+fibonacci:
+  id:
+    validity: 600
+# intervals config
+intervals:
+  next: 2
+  length: 10
+  second: "00"
+  milliSeconds: "000"
+
+
+
+
+
