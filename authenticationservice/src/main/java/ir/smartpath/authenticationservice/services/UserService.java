@@ -124,6 +124,7 @@ public class UserService extends BaseService<UserRepository, User> {
     public TimeResponse printNextIntervals(TimeDto timeDto) {
         StringBuffer result = new StringBuffer();
         getNextIntervals(timeDto, result);
+        result.replace(49, 52, "");
         return TimeResponse.builder().nextIntervals(result).build();
     }
 
@@ -144,14 +145,15 @@ public class UserService extends BaseService<UserRepository, User> {
     }
 
     private void getTime(TimeDto timeDto, int hour, int minute) {
+        String time = minute + ":" + intervalsSecond + "." + intervalsMilliSeconds + " - ";
         if (getCountHourDigits(hour) == 1 && minute != 0) {
-            timeDto.setTime("0" + hour + ":" + minute + ":" + intervalsSecond + "." + intervalsMilliSeconds + ", ");
+            timeDto.setTime("0" + hour + ":" + time);
         } else if (getCountHourDigits(hour) == 1 && minute == 0) {
-            timeDto.setTime("0" + hour + ":" + "0" + minute + ":" + intervalsSecond + "." + intervalsMilliSeconds + ", ");
+            timeDto.setTime("0" + hour + ":" + "0" + time);
         } else if (getCountHourDigits(hour) != 1 && minute == 0) {
-            timeDto.setTime(hour + ":" + "0" + minute + ":" + intervalsSecond + "." + intervalsMilliSeconds + ", ");
+            timeDto.setTime(hour + ":" + "0" + time);
         } else if (getCountHourDigits(hour) != 1) {
-            timeDto.setTime(hour + ":" + minute + ":" + intervalsSecond + "." + intervalsMilliSeconds + ", ");
+            timeDto.setTime(hour + ":" + time);
         }
     }
 
